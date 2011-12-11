@@ -1,0 +1,22 @@
+{
+  "author": "Andrey Tarantsov <andreyvit@me.com>",
+  "name": "apitree",
+  "description": "Creates a SocketStream-style API tree from a file system directory",
+  "version": "1.0.0",
+  "homepage": "https://github.com/andreyvit/apitree.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/andreyvit/apitree.js.git"
+  },
+  "main": "lib/apitree.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha"
+  },
+  "engines": {
+    "node": ">=0.4.0"
+  },
+  "dependencies": {},
+  "devDependencies" : {
+    "mocha"       : ">=0.3.1"
+  }
+}
