@@ -140,14 +140,20 @@ describe "API tree", ->
 
   describe "default filter callback", ->
 
+    require.extensions['.tjs'] = require.extensions['.js']
+
     tree = T {
       'foo.js'     : ['xx']
       'bar.js'     : ['yy']
       'foo.txt'    : ['zz']
-      'Rakefile'   : ['rr'],
+      'Rakefile'   : ['rr']
       'boz.coffee' : ['cc']
       'both.js'    : ['bb']
       'both.coffee': ['BB']
+      'alien.tjs'  : ['aa']
+      'alienC.js'  : ['ll']
+      'alienC.tjs' : ['LL']
+      'data.json'  : ['dd']
     }, {nameToKey: (name) -> name}
 
     it "should include .js files", ->
@@ -157,10 +163,18 @@ describe "API tree", ->
     it "should include .coffee files that don't have corresponding .js files", ->
       assert.ok 'boz.coffee' of tree
 
+    it "should include registered extension files that don't have corresponding .js files", ->
+      assert.ok 'alien.tjs' of tree
+
     it "should only include .js file when both .js and .coffee files exist", ->
       assert.ok 'both.js' of tree
       assert.ok !('both.coffee' of tree)
 
+    it "should only include .js file when both registered extension file and .js files exist", ->
+      assert.ok 'alienC.js' of tree
+      assert.ok !('alienC.tjs' of tree)
+
     it "should not include any other files", ->
       assert.ok !('Rakefile' of tree)
       assert.ok !('foo.txt' of tree)
+      assert.ok !('data.json' of tree)

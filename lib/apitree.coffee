@@ -2,12 +2,20 @@
 fs   = require 'fs'
 Path = require 'path'
 
+extensions = () ->
+  if require?.extensions
+    (k for k,v of require.extensions when k != '.json')
+  else
+    ['.coffee']
+
 exports.createApiTree = createApiTree = (directory, options={}) ->
   options.loadItem    ||= require
   options.nameToKey   ||= (name) -> name .split('.')[0] .replace(/_*\W+_*/g, '_')
   options.readdirSync ||= (path) -> fs.readdirSync(path)
   options.isDirectory ||= (path) -> fs.lstatSync(path).isDirectory()
-  options.filter      ||= (name, names) -> name.match(/\.js$/) or (name.match(/\.coffee$/) and not (name.replace(/\.coffee$/, '.js') in names))
+  options.filter      ||= (name, names) ->
+    ext = Path.extname(name)
+    return ext == '.js' or (ext in extensions() and not (Path.basename(name, ext).concat('.js') in names))
 
   tree = {}
 
