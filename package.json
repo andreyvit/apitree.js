@@ -8,7 +8,12 @@
     "type": "git",
     "url": "git://github.com/andreyvit/apitree.js.git"
   },
+  "bugs": "http://github.com/andreyvit/apitree.js/issues",
   "main": "lib/apitree.js",
+  "directories": {
+    "lib": "lib",
+    "example": "example"
+  },
   "scripts": {
     "test": "./node_modules/.bin/mocha"
   },
