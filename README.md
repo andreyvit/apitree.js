@@ -134,4 +134,4 @@ Uses mocha, run `npm test` to execute tests.
 License
 -------
 
-MIT license. Copyright 2011, [Andrey Tarantsov](andreyvit@me.com).
+MIT license. Copyright 2011–2012, [Andrey Tarantsov](andrey@tarantsov.com).
