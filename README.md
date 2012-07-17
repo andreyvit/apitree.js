@@ -13,7 +13,7 @@ Installation
 Usage
 -----
 
-Call `createApiTree` to load all .js and .coffee files in the given directory (and its subdirectories) and return an object, such that `returnedObject.foo.bar.boz.fubar` equals to exported function `fubar` of file `boz` in subdirectory `foo/bar` of the given directory. (Some of the described details are customizable via optional callbacks.)
+Call `createApiTree` to load all files in the given directory (and its subdirectories) and return an object, such that `returnedObject.foo.bar.boz.fubar` equals to exported function `fubar` of file `boz` in subdirectory `foo/bar` of the given directory. (Some of the described details are customizable via optional callbacks.)
 
 Example:
 
@@ -32,7 +32,7 @@ createApiTree function accepts 2 arguments:
 where options is an optional object with 3 possible keys:
 
 * `options.loadItem(path)` loads the contents of file at `path`; returns either `null` or an object that will be merged into the tree; the default value is `require`.
-* `options.filter(name, names)` determines whether given file should be processed or ignored; other names from the same directory are provided as the second argument; the default implementation returns true for .js files and for .coffee files which don't have corresponding .js files.
+* `options.filter(name, names)` determines whether given file should be processed or ignored; other names from the same directory are provided as the second argument; the default implementation returns true for .js files and files with a registered extension in require.extensions which don't have corresponding .js files. (Exludes .json files)
 * `options.nameToKey(name)` returns a key to use in the tree object for the given file or folder name; the default implementation strips the file extension and replaces any non-identifier characters with underscores.
 
 Additionally, `options.readdirSync(directory)` and `options.isDirectory(path)` can be provided to override the standard behavior of reading from the file system.
@@ -123,10 +123,12 @@ Uses mocha, run `npm test` to execute tests.
         default filter callback
           ✓ should include .js files
           ✓ should include .coffee files that don't have corresponding .js files
+          ✓ should include registered extension files that don't have corresponding .js files
           ✓ should only include .js file when both .js and .coffee files exist
+          ✓ should only include .js file when both registered extension file and .js files exist
           ✓ should not include any other files
 
-    ✔ 23 tests complete (47ms)
+    ✔ 25 tests complete (47ms)
 
 
 License
