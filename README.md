@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/andreyvit/apitree.js.png)](http://travis-ci.org/andreyvit/apitree.js)
 apitree.js
 ===========
 
