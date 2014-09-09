@@ -2,7 +2,7 @@
   "author": "Andrey Tarantsov <andreyvit@me.com>",
   "name": "apitree",
   "description": "Creates a SocketStream-style API tree from a file system directory",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "homepage": "https://github.com/andreyvit/apitree.js",
   "repository": {
     "type": "git",
