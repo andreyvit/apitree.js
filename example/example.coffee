@@ -7,6 +7,8 @@ global.DB =
 path = require 'path'
 global.S = require('../lib/apitree').createApiTree(path.join(__dirname, 'server'))
 
+console.log('value = %j', S.bare)
+
 S.app.init()
 userId = S.users.create(name: 'admin', password: 'admin123')
 postId = S.blog.posts.publish(authorId: userId, title: "Hello!", body: "Hey! This is my first post.")
