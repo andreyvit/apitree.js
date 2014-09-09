@@ -31,11 +31,15 @@ exports.createApiTree = createApiTree = (directory, options={}) ->
     else if options.filter(name, names)
       options.loadItem(child)
 
-    if item && Object.keys(item).length  # avoid empty nodes
-      node = (tree[key] ||= {})
-      for own k, v of item
-        if node[k]?
-          throw new Error("API tree name conflict for '#{k}' in #{child}")
-        node[k] = v
+    if item?
+      if typeof(item) == 'object' and item.constructor is Object
+        if Object.keys(item).length > 0  # avoid empty nodes
+          node = (tree[key] ||= {})
+          for own k, v of item
+            if node[k]?
+              throw new Error("API tree name conflict for '#{k}' in #{child}")
+            node[k] = v
+      else
+        tree[key] = item
 
   return tree
