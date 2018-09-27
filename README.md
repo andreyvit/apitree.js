@@ -1,6 +1,8 @@
 apitree.js
 ===========
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/andreyvit/apitree.js.svg)](https://greenkeeper.io/)
+
 Node.js module to create a SocketStream-style API tree from a file system directory.
 
 
